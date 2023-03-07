@@ -123,7 +123,7 @@ void setup() {
   Serial.begin(115200);
   delay(1000);
   //Serial.println("Start! Initialisation sensor DS18B20 and LCD 2004 display."); 
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   ds.begin();
   lcd.init();//sda - A4 pin, scl - A5 pin
 
@@ -132,7 +132,7 @@ void setup() {
   digitalWrite(Pump, HIGH); 
   //Serial.println("Pump turn on - the built-in LED on the board should light up /-/");
   //serNum =1;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   delay(500);
   
   // light for LCD display, Cursors position, Test lcd print
@@ -141,7 +141,7 @@ void setup() {
   lcd.setCursor(7, 1);
   //Serial.println("LCD 2004 display start print...");
   serNum =2;
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   lcd.print("ИНИЦИАЛИЗАЦИЯ");
   lcdError_test();
   delay(1000);
@@ -160,7 +160,7 @@ void setup() {
 
   //Serial.println("LCD in funktion lcdPrint_set_temperat() print --Set Temperature of heatting press OK--");
   //serNum =3;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   lcd.setCursor(5, 0);
   lcd.clear(); 
   lcd.print("УСТАНОВИТЕ");
@@ -179,12 +179,12 @@ void setup() {
   //you must check to buttons working before
   //Serial.println("Wait 5 min wenn OK press");
   //serNum =4;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   for (uint16_t i = 0; i<30000; i++) {
     if(digitalRead(buttonOk) == LOW){
       //Serial.println("Ok pressed, select heating temperature.");
       //serNum =5;
-      //Serial.println(serNum);
+      //Serial.println("serNum"+String(serNum));
       sel_h_tem();
       //lcdError_test();
       break;
@@ -192,7 +192,7 @@ void setup() {
     if(i==29999){
       //Serial.println("LCD print notification default heating temperature 40C");
       serNum =6;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       lcd.setCursor(4, 0);
       lcd.clear();
       lcd.print("ПО УМОЛЧАНИЮ");
@@ -210,7 +210,7 @@ void setup() {
   }
   //Serial.println("Define. Heating temperature: ");
   //serNum =7;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   //Serial.println(heating_temperature);
 } 
 
@@ -225,7 +225,7 @@ void loop() {
   // measurement temperature, druck on standat view
   //Serial.println("LCD print standart view");
   serNum =8;
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("ДАВЛЕНИЕ");
@@ -244,7 +244,7 @@ void loop() {
   // confirmation that button OK release
   //Serial.println("LCD print temperature, druck value on standat view");
   //serNum =9;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   count=51;
   con_but(buttonOk);
   modeHeat=modeHeat & 0b11101111;//update flag buttonOk
@@ -255,7 +255,7 @@ void loop() {
     if(analogRead(powCheck)<920){
       //Serial.println("Unstable power! is (Volt) ");
       serNum =54;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       Serial.println(String((analogRead(powCheck) * 5.0 ) / 1024.0));
       //get array of aktive tens
       tensArr=aktive_tens(&tensArr);
@@ -287,7 +287,7 @@ void loop() {
     if((digitalRead(pumpCheck)==HIGH) && (!((modeHeat & 0b10000000)>>7))){
       //Serial.println("There is no signal from the pump!");
       serNum =55;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       //get array of aktive tens
       tensArr=aktive_tens(&tensArr);
       // all of
@@ -322,7 +322,7 @@ void loop() {
       druck=druck/10;
       //Serial.println("Average value druck is ");
       serNum =51;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       Serial.println(String(druck));
       //str = String(druck);
       //buf = new unsigned char[10];
@@ -337,7 +337,7 @@ void loop() {
       if((druck<0.5 || druck>5) && (!((modeHeat & 0b100000)>>5))){
         //Serial.println("Critical pressure!");
         serNum =56;
-        Serial.println(serNum);
+        Serial.println("serNum"+String(serNum));
         //get array of aktive tens
         tensArr=aktive_tens(&tensArr);
         // all of
@@ -376,18 +376,18 @@ void loop() {
     if(count%10==0){
       //Serial.println("Memore free is ");
       //serNum =30;
-      //Serial.println(serNum);
+      //Serial.println("serNum"+String(serNum));
       //Serial.println(memoryFree()); // печать количества свободной оперативной памяти
       druck=druck+((double)analogRead(DruckPin)*10.3421/818.4-1.293);
       //Serial.println("Druck is ");
       serNum =58;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       Serial.println(String(analogRead(DruckPin)*10.3421/818.4-1.293));
       ds.requestTemperatures();
       current_temperature=ds.getTempCByIndex(0);
       //Serial.println("Current_temperature is ");
       serNum =59;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       Serial.println(String(current_temperature));
       //str = String(current_temperature);
       //buf = new unsigned char[10];
@@ -405,7 +405,7 @@ void loop() {
       tensArr=aktive_tens(&tensArr);
       //Serial.println("Array of aktive tens is ");
       serNum =60;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       Serial.println(String(tensArr));
 
       //protection temperature check
@@ -413,7 +413,7 @@ void loop() {
       if((current_temperature < -2 || current_temperature >90) && (!((modeHeat & 0b1000000)>>6))){
         //Serial.println("Critical temperature!");
         serNum =57;
-        Serial.println(serNum);
+        Serial.println("serNum"+String(serNum));
         // all of
         for(uint8_t i=0; i<8; i++){
           if(((1<<i) & tensArr)>>i==1){
@@ -504,7 +504,7 @@ void loop() {
         if(heating_temperature + 0.5 - deltaHeat < current_temperature){
           //Serial.println("The current temperature has exceeded.");
           serNum =46;
-          Serial.println(serNum);
+          Serial.println("serNum"+String(serNum));
           modeHeat=modeHeat | 1; //set mode wait
           if(!((modeHeat & 0b1000)>>3)){//if temperature reaching mode
             preview_temperature=current_temperature;
@@ -513,7 +513,7 @@ void loop() {
           else{
             //Serial.print("DeltaWait in prozess is ");
             serNum =47;
-            Serial.println(serNum);
+            Serial.println("serNum"+String(serNum));
             Serial.println(deltaWait);
             preview_temperature=heating_temperature + 0.5 - deltaHeat;
             deltaHeat=current_temperature - preview_temperature;
@@ -566,7 +566,7 @@ void loop() {
                 if(!(modeHeat & 1)){
                   //Serial.println("Turn on one ten.");
                   serNum =45;
-                  Serial.println(serNum);
+                  Serial.println("serNum"+String(serNum));
                   //turn on one ten, interval 10 sec
                   tens_control(i | 0b00001000);
                 }
@@ -582,7 +582,7 @@ void loop() {
         if(heating_temperature - 4.5 + deltaWait>current_temperature){
           //Serial.println("The current temperature has dropped.");
           serNum =49;
-          Serial.println(serNum);
+          Serial.println("serNum"+String(serNum));
           modeHeat=modeHeat & 0b11111110; //set mode heat
           usedTlegal=(usedTlegal & 0b11110000) | 1; // allow only one ten in programs define
           if(!((modeHeat & 0b1000)>>3)){//if temperature reaching mode
@@ -592,7 +592,7 @@ void loop() {
           else{
             //Serial.print("DeltaHeat in prozess is ");
             serNum =50;
-            Serial.println(serNum);
+            Serial.println("serNum"+String(serNum));
             Serial.println(deltaHeat);
             preview_temperature=heating_temperature - 4.5 + deltaWait;
             deltaWait=preview_temperature-current_temperature;
@@ -614,7 +614,7 @@ void loop() {
             if(((1<<i) & tensArr)>>i){
               //Serial.println("Turn of one ten.");
               serNum =48;
-              Serial.println(serNum);
+              Serial.println("serNum"+String(serNum));
               //turn of one ten, interval 10 sec
               tens_control(i);
               break;
@@ -633,7 +633,7 @@ void loop() {
   //change heating temperature, turn 
   //Serial.println("LCD print user settings.");
   serNum =11;
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   lcd.clear();
   //Serial.println("LCD print simbol / see how it");
   //serNum =12;
@@ -650,7 +650,7 @@ void loop() {
   // confirmation that button OK release
   //Serial.print("Scrol pointers buttons action time is 200 ms.");
   //serNum =13;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   con_but(buttonOk);
   while(digitalRead(buttonOk)==HIGH){
     if(digitalRead(buttonLeft)==LOW){
@@ -672,7 +672,7 @@ void loop() {
   }
   //Serial.print("Settings selected. Scroll pointers position is ");
   serNum =14;
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   Serial.println(String(scroll_pointer));
    
   //see what is selected: control tens or change temperature
@@ -681,7 +681,7 @@ void loop() {
     //select ten and turn on/of
     //Serial.println("LCD print select tens settings");
     serNum =15;
-    Serial.println(serNum);
+    Serial.println("serNum"+String(serNum));
     //return nummer of selected ten (from 0 to 7)
     //return 8 if user selected automatic settings
     lcd.clear();
@@ -728,14 +728,14 @@ void loop() {
     lcd.print("< OK >");
     //Serial.println("LCD print simbol plus on active tens");
     //serNum =16;
-    //Serial.println(serNum);
+    //Serial.println("serNum"+String(serNum);
     //serNum =18;
-    //Serial.println(serNum);
+    //Serial.println("serNum"+String(serNum));
         
     //control button
     //Serial.println("Scrol pointers buttons action time is 100 ms.");
     //serNum =18;
-    //Serial.println(serNum);
+    //Serial.println("serNum"+String(serNum));
     con_but(buttonOk);
     //user select tens (kWatt) from 0 to 32 use button right and left
     while (digitalRead(buttonOk)==HIGH){//while buttonOk not pressed
@@ -744,7 +744,7 @@ void loop() {
           scroll_pointer=scroll_pointer-4;
           //Serial.print("Scroll_pointer value:  ");
           //serNum =19;
-          //Serial.println(serNum);
+          //Serial.println("serNum"+String(serNum));
           //str = String(scroll_pointer);
           //Serial.println(String(scroll_pointer));
           //buf = new unsigned char[10];
@@ -774,7 +774,7 @@ void loop() {
           scroll_pointer=scroll_pointer+4;
           //Serial.print("Scroll_pointer value: ");
           //serNum =20;
-          //Serial.println(serNum);
+          //Serial.println("serNum"+String(serNum));
           //str = String(scroll_pointer);
           //Serial.println(String(scroll_pointer));
           //buf = new unsigned char[10];
@@ -803,7 +803,7 @@ void loop() {
     //Serial.println("Perhaps arduino not support divide operation.");
     //Serial.print("Selected ten is  ");
     serNum =21;
-    Serial.println(serNum);
+    Serial.println("serNum"+String(serNum));
     Serial.println(scroll_pointer/4);
 
     //user turn on/of tens
@@ -813,7 +813,7 @@ void loop() {
       lcd.clear();
       //Serial.println("LCD print confirmation on/of selected ten");
       serNum =22;
-      Serial.println(serNum);
+      Serial.println("serNum"+String(serNum));
       lcd.setCursor(0, 0);
       lcd.print("УСТАНОВИТЬ МОЩНОСТЬ ");
       lcd.setCursor(0, 1);
@@ -829,14 +829,14 @@ void loop() {
         if(digitalRead(buttonOk)==LOW){
           //Serial.println("LCD print intervals notification on/of selected ten");
           serNum =23;
-          Serial.println(serNum);
+          Serial.println("serNum"+String(serNum));
           lcd.clear();
           lcd.setCursor(0, 0);
           lcd.print("ИНТЕРВАЛ ВКЛЮЧЕНИЯ/ ВЫКЛЮЧЕНИЯ 10 CEK.");
           modeHeat = modeHeat & 0b11111011; //set 0 flag in automatic bit
           //Serial.println("Control of tens is not automatic in moment.");
           //serNum =24;
-          //Serial.println(serNum);
+          //Serial.println("serNum"+String(serNum));
           //scroll_pointer=scroll_pointer/4;
           for(uint8_t i =0; i<8; i++){
             if(scroll_pointer>i){
@@ -856,7 +856,7 @@ void loop() {
         if(digitalRead(buttonLeft)==LOW){
           //Serial.println("User selected chancel.");
           serNum =27;
-          Serial.println(serNum);
+          Serial.println("serNum"+String(serNum));
           break;
         }
       }
@@ -865,13 +865,13 @@ void loop() {
       //modeHeat = modeHeat | 0b100; //set 1 flag in automatic bit
       //Serial.println("User selected automatic control.");
       //serNum =28;
-      //Serial.println(serNum);
+      //Serial.println("serNum"+String(serNum)m);
     //}
   }
   else{
     //Serial.println("Select heating temperature.");
     serNum =29;
-    Serial.println(serNum);
+    Serial.println("serNum"+String(serNum));
     sel_h_tem();
     //lcdError_test();
   }   
@@ -881,13 +881,13 @@ void loop() {
 void lcdError_test(){
   //Serial.print("LCD write error: ");
   serNum =31;
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   //Serial.println(lcd.getWriteError());
   if(lcd.getWriteError()!=0){
     lcd.clearWriteError();
     //Serial.println("LCD write error was clear");
     serNum =32;
-    Serial.println(serNum);
+    Serial.println("serNum"+String(serNum));
   }
 }
 
@@ -992,7 +992,7 @@ void sel_h_tem(){
   }
   //Serial.println("Heating temperature is setted ");
   serNum =38;
-  Serial.println(serNum);
+  Serial.println("serNum"+String(serNum));
   Serial.println(heating_temperature);
 }
 
@@ -1000,7 +1000,7 @@ void sel_h_tem(){
 void con_but(uint8_t button){
   //Serial.println("Confirmation that button release.");
   //serNum =39;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   while(1){
     //pressing no more than 1 time in 900 ms
     if((millis()-tm>900) && (digitalRead(button) == HIGH)){
@@ -1025,7 +1025,7 @@ uint8_t aktive_tens(uint8_t *tensArr){
   //Serial.println("Attention! Bitwise operations with referens. Need testing.");
   //Serial.print("Actuel binary byte (from left to right) of active tens is  ");
   //serNum =40;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   //Serial.println(String(*tensArr, BIN));
   return *tensArr;
 }
@@ -1050,20 +1050,20 @@ void tens_control(uint8_t parametrs){//you can code the only one char
   }
   //Serial.println("previewMillis is ");
   //serNum =44;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   //Serial.println(previewMillis);
   //Serial.println("pin is ");
   //serNum =52;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   //Serial.println(((parametrs & 0b111)+2), BIN);
   //Serial.println("value is ");
   //serNum =53;
-  //Serial.println(serNum);
+  //Serial.println("serNum"+String(serNum));
   //Serial.println(((parametrs & 0b1000)>>3), BIN);
   if((millis()-previewMillis) > interval){
     //Serial.println("Do tens!");
     //serNum =41;
-    //Serial.println(serNum);
+    //Serial.println("serNum"+String(serNum));
     digitalWrite(((parametrs & 0b111)+2), ((parametrs & 0b1000)>>3));
     previewMillis=millis();
   }
@@ -1071,7 +1071,7 @@ void tens_control(uint8_t parametrs){//you can code the only one char
     if((parametrs & 0b10000)>>4){
       //Serial.println("Wait and after do tens.");
       //serNum =42;
-      //Serial.println(serNum);
+      //Serial.println("serNum"+String(serNum));
       delay(interval-(millis()-previewMillis));
       digitalWrite(((parametrs & 0b111)+2), ((parametrs & 0b1000)>>3));
       previewMillis=millis();
@@ -1079,7 +1079,7 @@ void tens_control(uint8_t parametrs){//you can code the only one char
     //else{
       //Serial.println("Yet not time do tens.");
     //  serNum =43;
-    //  Serial.println(serNum);
+    //  Serial.println("serNum"+String(serNum));
     //}
   }
 }
