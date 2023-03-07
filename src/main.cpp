@@ -406,7 +406,7 @@ void loop() {
       //Serial.println("Array of aktive tens is ");
       serNum =60;
       Serial.println("serNum"+String(serNum));
-      Serial.println(String(tensArr));
+      Serial.println(String(tensArr, BIN));
 
       //protection temperature check
       //turn off all tens in emergency mode if temperature is critikal and on temperature protection.
@@ -865,7 +865,7 @@ void loop() {
       //modeHeat = modeHeat | 0b100; //set 1 flag in automatic bit
       //Serial.println("User selected automatic control.");
       //serNum =28;
-      //Serial.println("serNum"+String(serNum)m);
+      //Serial.println("serNum"+String(serNum));
     //}
   }
   else{
