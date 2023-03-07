@@ -122,7 +122,7 @@ void setup() {
   //initialisation ports monitor, sensor ds18b20, display 
   Serial.begin(115200);
   delay(1000);
-  //Serial.println("Start! Initialisation sensor DS18B20 and LCD 2004 display..."); 
+  //Serial.println("Start! Initialisation sensor DS18B20 and LCD 2004 display."); 
   Serial.println(serNum);
   ds.begin();
   lcd.init();//sda - A4 pin, scl - A5 pin
@@ -882,7 +882,7 @@ void lcdError_test(){
   //Serial.print("LCD write error: ");
   serNum =31;
   Serial.println(serNum);
-  Serial.println(lcd.getWriteError());
+  //Serial.println(lcd.getWriteError());
   if(lcd.getWriteError()!=0){
     lcd.clearWriteError();
     //Serial.println("LCD write error was clear");
