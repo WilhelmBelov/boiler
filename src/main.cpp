@@ -882,7 +882,7 @@ void lcdError_test(){
   //Serial.print("LCD write error: ");
   serNum =31;
   Serial.println("serNum"+String(serNum));
-  //Serial.println(lcd.getWriteError());
+  Serial.println(lcd.getWriteError());
   if(lcd.getWriteError()!=0){
     lcd.clearWriteError();
     //Serial.println("LCD write error was clear");
