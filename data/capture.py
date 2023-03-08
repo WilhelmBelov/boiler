@@ -61,6 +61,7 @@ data = ""
 
 #mainly cycles
 while True:
+    tic = time.perf_counter()
     try:
         Data = q.get()
 
@@ -109,8 +110,8 @@ while True:
                 dataFile.flush()
                 file_stats = os.stat("copie.txt")
                 #print(file_stats.st_size)
-                if file_stats.st_size>100:
-                    dataFile.truncate(100)
+                if file_stats.st_size>104857600:
+                    dataFile.truncate(104857600)
                 dataFile.close()
                 #remove old file
                 os.remove("Data_report.txt")
@@ -123,16 +124,22 @@ while True:
                 dataFile = open("copie.txt", "a")
                 dataFile.write(mesData)
                 #overwriting old file
+                toc = time.perf_counter()
+                print(f"First part do in {toc - tic:0.4f} seconds")
+                tic = time.perf_counter()
                 with open("Message_report.txt") as f:
                     for line in f:
                         dataFile.write(line)
                     f.close()
+                toc = time.perf_counter()
+                print(f"Second part do in {toc - tic:0.4f} seconds")
+                tic = time.perf_counter()
                 #file size limit 100Mb
                 dataFile.flush()
                 file_stats = os.stat("copie.txt")
                 print("file size:{0}".format(file_stats.st_size))
-                if file_stats.st_size>100:
-                    dataFile.truncate(100)
+                if file_stats.st_size>104857600:
+                    dataFile.truncate(104857600)
                 dataFile.close()
                 #remove old file
                 os.remove("Message_report.txt")
@@ -151,3 +158,5 @@ while True:
         messageFile.close()
         dataFile.close()
         sys.exit()
+    toc = time.perf_counter()
+    print(f"Part part do in {toc - tic:0.4f} seconds")
