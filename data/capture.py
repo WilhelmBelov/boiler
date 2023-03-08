@@ -54,10 +54,10 @@ threading.Thread(target=arduino_worker, daemon=True).start()
 decryptFile = open(os.path.join(sys.path[0], "Serial_message.txt"))
 mes = decryptFile.read().split('\n')
 #print(mes)
-#file to write of message from arduino
-messageFile = open("Message_report.txt", "a")
-#file to write of data (druck, temperature...) from arduino
-dataFile = open("Data_report.txt", "a")
+#variable to write of message from arduino
+mesData = ""
+#variable to write of data (druck, temperature...) from arduino
+data = ""
 
 #mainly cycles
 while True:
