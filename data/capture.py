@@ -87,23 +87,23 @@ while True:
                         power=power+4
                 print("Write to file:")
                 print(" {0}:{1}".format(mes[Data], power))
-                dataFile.write(" {0}:{1}".format(mes[Data], power))
+                dataFile.write("2023-03-03 21:57:09.793453 LCD write error: 0 TEST")
             #commentare to parametrs
             elif Data==46 or Data==45 or Data==49 or Data==48:
                 print("Write to file:")
                 print(" <<{0}>>".format(mes[Data]))
-                dataFile.write(" <<{0}>>".format(mes[Data]))
+                dataFile.write("2023-03-03 21:57:09.793453 LCD write error: 0 TEST")
             #arduino message with value
             elif Data==14 or Data==21 or Data==38 or Data==31 or Data==57 or Data==54:
                 value = q.get()
                 print("Write to file:")
                 print("{0} {1} {2}\n".format(datetime.datetime.now(), mes[Data], value))
-                messageFile.write("{0} {1} {2}\n".format(datetime.datetime.now(), mes[Data], value))
+                messageFile.write("2023-03-03 21:57:09.793453 LCD write error: 0 TEST")
             #arduino message
             else:
                 print("Write to file:")
                 print("{0} {1}\n".format(datetime.datetime.now(), mes[Data]))
-                messageFile.write("{0} {1}\n".format(datetime.datetime.now(), mes[Data]))
+                messageFile.write("2023-03-03 21:57:09.793453 LCD write error: 0 TEST")
         else:
             print("Data is not serial nummer data.") 
 
