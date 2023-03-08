@@ -56,19 +56,24 @@ mes = decryptFile.read().split('\n')
 #print(mes)
 #variable to write of message from arduino
 mesData = ""
+fNameMes = "Message_report.txt"
 #variable to write of data (druck, temperature...) from arduino
 data = ""
+fNameData = "Data_report.txt"
+count=0
 
 #mainly cycles
 while True:
-    tic = time.perf_counter()
+    #tic = time.perf_counter()
     try:
         Data = q.get()
-
+        #protection overloading
+        if(q.qsize()>15):
+            q.queue.clear()
+            
         if Data[0:6]=="serNum":
             Data=int(Data[6:len(Data)])#index of Data message
             print(mes[Data])
-            messageFile = open("Message_report.txt")
             #druck - start parametr
             if Data==58:
                 value = q.get()
@@ -99,52 +104,26 @@ while True:
             #file to write of data (druck, temperature...) from arduino
             if data != "":
                 #create a new file for write al to first line
-                dataFile = open("copie.txt", "a")
+                dataFile = open(fNameData, "a")
                 dataFile.write(data)
-                #overwriting old file
-                with open("Data_report.txt") as f:
-                    for line in f:
-                        dataFile.write(line)
-                    f.close()
-                #file size limit 100Mb
-                dataFile.flush()
-                file_stats = os.stat("copie.txt")
-                #print(file_stats.st_size)
-                if file_stats.st_size>104857600:
-                    dataFile.truncate(104857600)
                 dataFile.close()
-                #remove old file
-                os.remove("Data_report.txt")
-                #rename new file
-                os.rename("copie.txt", "Data_report.txt")
+                file_stats = os.stat(fNameData)
+                #print(file_stats.st_size)
+                if file_stats.st_size>1048576:
+                    fNameData="{0}{1}.txt".format(fNameData[0:11], count)
+                    count=count+1
                 data=""
             #file to write of message from arduino
             if mesData != "":
                 #create a new file for write al to first line
-                dataFile = open("copie.txt", "a")
-                dataFile.write(mesData)
-                #overwriting old file
-                toc = time.perf_counter()
-                print(f"First part do in {toc - tic:0.4f} seconds")
-                tic = time.perf_counter()
-                with open("Message_report.txt") as f:
-                    for line in f:
-                        dataFile.write(line)
-                    f.close()
-                toc = time.perf_counter()
-                print(f"Second part do in {toc - tic:0.4f} seconds")
-                tic = time.perf_counter()
-                #file size limit 100Mb
-                dataFile.flush()
-                file_stats = os.stat("copie.txt")
-                print("file size:{0}".format(file_stats.st_size))
-                if file_stats.st_size>104857600:
-                    dataFile.truncate(104857600)
+                dataFile = open(fNameMes, "a")
+                dataFile.write(data)
                 dataFile.close()
-                #remove old file
-                os.remove("Message_report.txt")
-                #rename new file
-                os.rename("copie.txt", "Message_report.txt")
+                file_stats = os.stat(fNameMes)
+                #print(file_stats.st_size)
+                if file_stats.st_size>1048576:
+                    fNameMes="{0}{1}.txt".format(fNameMes[0:14], count)
+                    count=count+1
                 mesData=""
         else:
             print("Data is not serial nummer data.") 
@@ -155,8 +134,6 @@ while True:
     except KeyboardInterrupt:
         print("Closed.")
         decryptFile.close()
-        messageFile.close()
-        dataFile.close()
         sys.exit()
-    toc = time.perf_counter()
-    print(f"Part part do in {toc - tic:0.4f} seconds")
+    #toc = time.perf_counter()
+    #print(f"Part part do in {toc - tic:0.4f} seconds")
