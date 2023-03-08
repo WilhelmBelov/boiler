@@ -110,8 +110,18 @@ while True:
             print("Data is not serial nummer data.") 
 
         #file size limit 100Mb
-        #dataFile.truncate(1000)
-        #messageFile.truncate(1000)
+        file_stats = os.stat("Data_report.txt")
+        print(file_stats.st_size)
+        if file_stats.st_size>100:
+            dataFile.seek(0)
+            dataFile.truncate(100)
+            dataFile.seek(0)
+        file_stats = os.stat("Message_report.txt")
+        print(file_stats.st_size)
+        if file_stats.st_size>100:
+            messageFile.seek(0)
+            messageFile.truncate(100)
+
     except IndexError as err:
         print(err)
         print("Data is not serial nummer data.")  
