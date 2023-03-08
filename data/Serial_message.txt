@@ -1,0 +1,61 @@
+Start! Initialisation sensor DS18B20 and LCD 2004 display.
+Pump turn on - the built-in LED on the board should light up /-/
+LCD 2004 display start print...
+LCD in funktion lcdPrint_set_temperat() print --Set Temperature of heatting press OK--
+Wait 5 min wenn OK press
+Ok pressed, select heating temperature.
+LCD print notification default heating temperature 40C
+Define. Heating temperature: 
+LCD print standart view
+LCD print temperature, druck value on standat view
+.
+LCD print user settings
+LCD print simbol / see how it
+Scrol pointers buttons action time is 200 ms.
+Settings selected. Scroll pointers position is 
+LCD print select tens settings
+LCD print simbol plus on active tens
+LCD print 2 site first row for eighth ten
+Scrol pointers buttons action time is 100 ms.
+Scroll_pointer value:  
+Scroll_pointer value: 
+/*Polling of three buttons completed. Perhaps arduino not support divide operation.*/ Selected ten is  
+LCD print confirmation on/of selected ten
+LCD print intervals notification on/of selected ten
+Control of tens is not automatic in moment.
+Programm turn of ten 
+Programm turn on ten 
+User selected chancel.
+User selected automatic control.
+Select heating temperature.
+Memore free is 
+LCD write error:
+LCD write error was clear
+LCD print scroll_pointer and simbols to button
+LCD print first row temperature value from 95 to 75. Debug - How print LCD uint8_t type?
+Confirmation that button OK release. Scrol pointers buttons action time is 200 ms.
+Scroll_pointer value:
+Scroll_pointer value:
+Polling of three buttons completed. Perhaps arduino not support double multiplication operation. Heating temperature is 
+Confirmation that button release.
+Attention! Bitwise operations with referens. Need testing. Actuel binary byte (from left to right) of active tens is  
+Do tens!
+Wait and after do tens.
+Yet not time do tens.
+previewMillis is
+Turn on one ten.
+The current temperature has exceeded.
+DeltaWait
+Turn of one ten.
+The current temperature has dropped.
+DeltaHeat 
+Druck(average)  
+pin is 
+value is 
+Unstable power! is (Volt) 
+There is no signal from the pump!
+Critical pressure!
+Critical temperature!
+Druck(bar)
+Temperature(C) 
+Power(kWatt)
