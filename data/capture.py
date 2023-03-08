@@ -104,6 +104,8 @@ while True:
                 print("Write to file:")
                 print("{0} {1}\n".format(datetime.datetime.now(), mes[Data]))
                 messageFile.write("2023-03-03 21:57:09.793453 LCD write error: 0 TEST")
+            dataFile.flush()
+            messageFile.flush()
         else:
             print("Data is not serial nummer data.") 
 
