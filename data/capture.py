@@ -77,7 +77,7 @@ while True:
                 value = q.get()
                 print("Write to file:")
                 print(" {0}:{1}".format(mes[Data], value))
-                dataFile.write(" {0}:{1}".format(mes[Data], value))
+                dataFile.write("2023-03-03 21:57:09.793453 LCD write error: 0 TEST")
             #parametr tensArr - convert to kWatt
             elif Data==51:
                 value = q.get()
