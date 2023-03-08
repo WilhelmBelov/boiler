@@ -106,6 +106,7 @@ while True:
                         dataFile.write(line)
                     f.close()
                 #file size limit 100Mb
+                dataFile.flush()
                 file_stats = os.stat("copie.txt")
                 #print(file_stats.st_size)
                 if file_stats.st_size>100:
@@ -127,6 +128,7 @@ while True:
                         dataFile.write(line)
                     f.close()
                 #file size limit 100Mb
+                dataFile.flush()
                 file_stats = os.stat("copie.txt")
                 print("file size:{0}".format(file_stats.st_size))
                 if file_stats.st_size>100:
