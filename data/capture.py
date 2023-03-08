@@ -128,7 +128,7 @@ while True:
                     f.close()
                 #file size limit 100Mb
                 file_stats = os.stat("copie.txt")
-                #print(file_stats.st_size)
+                print("file size:{0}".format(file_stats.st_size))
                 if file_stats.st_size>100:
                     dataFile.truncate(100)
                 dataFile.close()
