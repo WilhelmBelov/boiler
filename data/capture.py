@@ -63,9 +63,10 @@ dataFile = open("Data_report.txt", "a")
 while True:
     try:
         Data = q.get()
-        print(mes[Data])
+        
         if Data[0:6]=="serNum":
             Data=int(Data[6:len(Data)])#index of Data message
+            print(mes[Data])
             #druck - start parametr
             if Data==58:
                 value = q.get()
