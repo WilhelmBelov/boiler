@@ -63,10 +63,13 @@ dataFile = open("Data_report.txt", "a")
 while True:
     try:
         Data = q.get()
-        
+
         if Data[0:6]=="serNum":
             Data=int(Data[6:len(Data)])#index of Data message
             print(mes[Data])
+            #set write pointer to first line
+            dataFile.seek(0, 0)
+            messageFile.seek(0, 0)
             #druck - start parametr
             if Data==58:
                 value = q.get()
@@ -100,15 +103,12 @@ while True:
 
         #file size limit 100Mb
         file_stats = os.stat("Data_report.txt")
-        print(file_stats.st_size)
+        #print(file_stats.st_size)
         if file_stats.st_size>100:
-            dataFile.seek(0)
             dataFile.truncate(100)
-            dataFile.seek(0)
         file_stats = os.stat("Message_report.txt")
-        print(file_stats.st_size)
+        #print(file_stats.st_size)
         if file_stats.st_size>100:
-            messageFile.seek(0)
             messageFile.truncate(100)
 
     except IndexError as err:
