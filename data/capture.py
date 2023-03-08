@@ -67,17 +67,15 @@ while True:
         if Data[0:6]=="serNum":
             Data=int(Data[6:len(Data)])#index of Data message
             print(mes[Data])
-            #set write pointer to first line
-            dataFile.seek(0, 0)
-            messageFile.seek(0, 0)
+            messageFile = open("Message_report.txt")
             #druck - start parametr
             if Data==58:
                 value = q.get()
-                dataFile.write("\n{0} {1}:{2}".format(datetime.datetime.now(), mes[Data], value))
+                data = "\n{0} {1}:{2}".format(datetime.datetime.now(), mes[Data], value)
             #parametrs: average druck, temperature, deltaHeat, deltaWait
             elif Data==59 or Data==60 or Data==50 or Data==47:
                 value = q.get()
-                dataFile.write(" {0}:{1}".format(mes[Data], value))
+                data = " {0}:{1}".format(mes[Data], value)
             #parametr tensArr - convert to kWatt
             elif Data==51:
                 value = q.get()
@@ -85,31 +83,62 @@ while True:
                 for bit in value:
                     if bit==1:
                         power=power+4
-                dataFile.write(" {0}:{1}".format(mes[Data], power))
+                data = " {0}:{1}".format(mes[Data], power)
             #commentare to parametrs
             elif Data==46 or Data==45 or Data==49 or Data==48:
-                dataFile.write(" <<{0}>>".format(mes[Data]))
+                data = " <<{0}>>".format(mes[Data])
             #arduino message with value
             elif Data==14 or Data==21 or Data==38 or Data==31 or Data==57 or Data==54:
                 value = q.get()
-                messageFile.write("{0} {1} {2}\n".format(datetime.datetime.now(), mes[Data], value))
+                mesData = "{0} {1} {2}\n".format(datetime.datetime.now(), mes[Data], value)
             #arduino message
             else:
-                messageFile.write("{0} {1}\n".format(datetime.datetime.now(), mes[Data]))
-            dataFile.flush()
-            messageFile.flush()
+                mesData = "{0} {1}\n".format(datetime.datetime.now(), mes[Data])
+            
+            #file to write of data (druck, temperature...) from arduino
+            if data != "":
+                #create a new file for write al to first line
+                dataFile = open("copie.txt", "a")
+                dataFile.write(data)
+                #overwriting old file
+                with open("Data_report.txt") as f:
+                    for line in f:
+                        dataFile.write(line)
+                    f.close()
+                #file size limit 100Mb
+                file_stats = os.stat("copie.txt")
+                #print(file_stats.st_size)
+                if file_stats.st_size>100:
+                    dataFile.truncate(100)
+                dataFile.close()
+                #remove old file
+                os.remove("Data_report.txt")
+                #rename new file
+                os.rename("copie.txt", "Data_report.txt")
+                data=""
+            #file to write of message from arduino
+            if mesData != "":
+                #create a new file for write al to first line
+                dataFile = open("copie.txt", "a")
+                dataFile.write(mesData)
+                #overwriting old file
+                with open("Message_report.txt") as f:
+                    for line in f:
+                        dataFile.write(line)
+                    f.close()
+                #file size limit 100Mb
+                file_stats = os.stat("copie.txt")
+                #print(file_stats.st_size)
+                if file_stats.st_size>100:
+                    dataFile.truncate(100)
+                dataFile.close()
+                #remove old file
+                os.remove("Message_report.txt")
+                #rename new file
+                os.rename("copie.txt", "Message_report.txt")
+                mesData=""
         else:
             print("Data is not serial nummer data.") 
-
-        #file size limit 100Mb
-        file_stats = os.stat("Data_report.txt")
-        #print(file_stats.st_size)
-        if file_stats.st_size>100:
-            dataFile.truncate(100)
-        file_stats = os.stat("Message_report.txt")
-        #print(file_stats.st_size)
-        if file_stats.st_size>100:
-            messageFile.truncate(100)
 
     except IndexError as err:
         print(err)
