@@ -284,6 +284,10 @@ void loop() {
     }
     //protection pump check
     //turn off all tens in emergency mode if pump of.
+    //Serial.println("pumpCheck and  modeHeat are ");
+    serNum =62;
+    Serial.println("serNum"+String(serNum));
+    Serial.println(pumpCheck + ((modeHeat & 0b10000000)>>7));
     if((digitalRead(pumpCheck)!=HIGH) && (!((modeHeat & 0b10000000)>>7))){
       //Serial.println("There is no signal from the pump!");
       serNum =55;
@@ -379,9 +383,9 @@ void loop() {
     //request temperature once in 3 secunde
     if((count==0) || (count==10) || (count==20) || (count==30) || (count==40) || (count==50) || (count==60) || (count==70) || (count==80) || (count==90)){
       //Serial.println("Count is ");
-      serNum =61;
-      Serial.println("serNum"+String(serNum));
-      Serial.println(count);
+      //serNum =61;
+      //Serial.println("serNum"+String(serNum));
+      //Serial.println(count);
       //Serial.println("Memore free is ");
       //serNum =30;
       //Serial.println("serNum"+String(serNum));
