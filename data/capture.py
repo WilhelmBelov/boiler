@@ -117,7 +117,7 @@ while True:
             if mesData != "":
                 #create a new file for write al to first line
                 dataFile = open(fNameMes, "a")
-                dataFile.write(data)
+                dataFile.write(mesData)
                 dataFile.close()
                 file_stats = os.stat(fNameMes)
                 #print(file_stats.st_size)
