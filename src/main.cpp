@@ -354,8 +354,8 @@ void loop() {
         while(digitalRead(buttonOk)==HIGH){
           lcd.clear();
           delay(200);
-          lcd.setCursor(0, 0);
-          lcd.print("ПРЕДЕЛЬНОЕ ДАВЛЕНИЕ");
+          lcd.setCursor(2, 0);
+          lcd.print("ОПАСНОЕ  ДАВЛЕНИЕ");
           lcd.setCursor(4, 1);
           lcd.print("! ");
           lcd.print(String(druck));
