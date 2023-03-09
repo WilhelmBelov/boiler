@@ -308,7 +308,7 @@ void loop() {
         lcd.print("OTCYTCTBYET СИГНАЛ");
         lcd.setCursor(5, 1);
         lcd.print("OT HACOCA!");
-        lcd.setCursor(1, 2);
+        lcd.setCursor(4, 2);
         lcd.print("ПРОДОЛЖИТЬ?");
         lcd.setCursor(7, 3);
         lcd.print("<  OK  >");
