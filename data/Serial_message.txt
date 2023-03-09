@@ -60,3 +60,4 @@ Druck(bar)
 Temperature(C) 
 Power(kWatt)
 Count is 
+pumpCheck and  modeHeat are 
