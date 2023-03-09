@@ -352,13 +352,13 @@ void loop() {
           lcd.clear();
           delay(200);
           lcd.setCursor(0, 0);
-          lcd.print("КРИТИЧЕСКОЕ ДАВЛЕНИЕ");
+          lcd.print("КРИТИУЕСКОЕ ДАВЛЕНИЕ");
           lcd.setCursor(4, 1);
           lcd.print("! ");
           lcd.print(String(druck));
           lcd.print(" bar !");
           lcd.setCursor(1, 2);
-          lcd.print("ОТКЛЮЧИТЬ ЗАЩИТУ?");
+          lcd.print("ОТКЛЮУИТЬ ЗАЩИТУ?");
           lcd.setCursor(7, 3);
           lcd.print("<  OK  >");
           delay(4750);
