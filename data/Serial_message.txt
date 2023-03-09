@@ -19,7 +19,7 @@ LCD print 2 site first row for eighth ten
 Scrol pointers buttons action time is 100 ms.
 Scroll_pointer value:  
 Scroll_pointer value: 
-Selected ten is  
+Selected power is  
 LCD print confirmation on/of selected ten
 LCD print intervals notification on/of selected ten
 Control of tens is not automatic in moment.
