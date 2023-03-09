@@ -25,14 +25,13 @@
 #define buttonOk 16
 #define buttonRight 17
 
-//check pump, HIGH if pump open (pin A7)
-#define pumpCheck 21 
-
 //check power, protection if power less as 4,5 V
 int powCheck = A0;
 // analog pin for getting drucks value
 int DruckPin = A6;
-
+//check pump, HIGH if pump open (pin A7)
+int pumpCheck = A7;
+ 
 
 //The heating temperature is set by the user or automatically. 
 //The purpose of the program is to heat the boiler to the set temperature
@@ -117,7 +116,7 @@ void setup() {
   pinMode(buttonOk, INPUT_PULLUP);
   pinMode(buttonRight, INPUT_PULLUP);
   pinMode(buttonLeft, INPUT_PULLUP);
-  pinMode(pumpCheck, INPUT_PULLUP);
+  //pinMode(pumpCheck, INPUT_PULLUP);
 
   //initialisation ports monitor, sensor ds18b20, display 
   Serial.begin(115200);
@@ -285,10 +284,10 @@ void loop() {
     //protection pump check
     //turn off all tens in emergency mode if pump of.
     //Serial.println("pumpCheck and  modeHeat are ");
-    serNum =62;
-    Serial.println("serNum"+String(serNum));
-    Serial.println(digitalRead(pumpCheck));
-    if((digitalRead(pumpCheck)!=HIGH) && (!((modeHeat & 0b10000000)>>7))){
+    //serNum =62;
+    //Serial.println("serNum"+String(serNum));
+    //Serial.println(digitalRead(pumpCheck));
+    if((analogRead(pumpCheck)<512) && (!((modeHeat & 0b10000000)>>7))){
       //Serial.println("There is no signal from the pump!");
       serNum =55;
       Serial.println("serNum"+String(serNum));
