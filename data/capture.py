@@ -79,15 +79,15 @@ while True:
                 value = q.get()
                 data = "\n{0} {1}:{2}".format(datetime.datetime.now(), mes[Data], value)
             #parametrs: average druck, temperature, deltaHeat, deltaWait
-            elif Data==59 or Data==60 or Data==50 or Data==47:
+            elif Data==51 or Data==59 or Data==50 or Data==47:
                 value = q.get()
                 data = " {0}:{1}".format(mes[Data], value)
             #parametr tensArr - convert to kWatt
-            elif Data==51:
+            elif Data==60:
                 value = q.get()
                 power=0
                 for bit in value:
-                    if bit==1:
+                    if bit=="1":
                         power=power+4
                 data = " {0}:{1}".format(mes[Data], power)
             #commentare to parametrs
