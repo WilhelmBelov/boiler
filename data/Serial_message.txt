@@ -36,7 +36,7 @@ LCD print first row temperature value from 95 to 75. Debug - How print LCD uint8
 Confirmation that button OK release. Scrol pointers buttons action time is 200 ms.
 Scroll_pointer value:
 Scroll_pointer value:
-Polling of three buttons completed. Perhaps arduino not support double multiplication operation. Heating temperature is 
+Heating temperature is
 Confirmation that button release.
 Attention! Bitwise operations with referens. Need testing. Actuel binary byte (from left to right) of active tens is  
 Do tens!
