@@ -819,10 +819,10 @@ void loop() {
     }
     //Serial.println("Polling of three buttons completed");
     //Serial.println("Perhaps arduino not support divide operation.");
-    //Serial.print("Selected ten is  ");
+    //Serial.print("Selected power is  ");
     serNum =21;
     Serial.println("serNum"+String(serNum));
-    Serial.println(scroll_pointer/4);
+    Serial.println(scroll_pointer);
 
     //user turn on/of tens
     //return parametrs from user, which next funktion handle 
@@ -855,7 +855,7 @@ void loop() {
           //Serial.println("Control of tens is not automatic in moment.");
           //serNum =24;
           //Serial.println("serNum"+String(serNum));
-          //scroll_pointer=scroll_pointer/4;
+          scroll_pointer=scroll_pointer/4;
           for(uint8_t i =0; i<8; i++){
             if(scroll_pointer>i){
               if(!(((1<<i) & tensArr)>>i)){
