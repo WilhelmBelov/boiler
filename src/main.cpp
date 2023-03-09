@@ -245,7 +245,6 @@ void loop() {
   //Serial.println("LCD print temperature, druck value on standat view");
   //serNum =9;
   //Serial.println("serNum"+String(serNum));
-  count=51;
   con_but(buttonOk);
   modeHeat=modeHeat & 0b11101111;//update flag buttonOk
 
@@ -374,7 +373,7 @@ void loop() {
       count=0;
     }
     //request temperature once in 3 secunde
-    if(count%10==0){
+    if((count==0) || (count==10) || (count==20) || (count==30) || (count==40) || (count==50) || (count==60) || (count==70) || (count==80) || (count==90)){
       //Serial.println("Count is ");
       serNum =61;
       Serial.println("serNum"+String(serNum));
