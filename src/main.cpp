@@ -245,6 +245,7 @@ void loop() {
   //Serial.println("LCD print temperature, druck value on standat view");
   //serNum =9;
   //Serial.println("serNum"+String(serNum));
+  count=100;
   con_but(buttonOk);
   modeHeat=modeHeat & 0b11101111;//update flag buttonOk
 
@@ -355,7 +356,7 @@ void loop() {
           lcd.clear();
           delay(200);
           lcd.setCursor(0, 0);
-          lcd.print("КРИТИЧЕСКОЕ  ДАВЛЕНИЕ");
+          lcd.print("КРИТИЧЕСКОЕ ДАВЛЕНИЕ");
           lcd.setCursor(4, 1);
           lcd.print("! ");
           lcd.print(String(druck));
