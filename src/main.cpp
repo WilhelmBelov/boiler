@@ -287,7 +287,7 @@ void loop() {
     //Serial.println("pumpCheck and  modeHeat are ");
     serNum =62;
     Serial.println("serNum"+String(serNum));
-    Serial.println(pumpCheck);
+    Serial.println(digitalRead(pumpCheck));
     if((digitalRead(pumpCheck)!=HIGH) && (!((modeHeat & 0b10000000)>>7))){
       //Serial.println("There is no signal from the pump!");
       serNum =55;
