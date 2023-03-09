@@ -55,7 +55,7 @@ double deltaWait; //variable to control the temperature change in the process of
 //7 bit - 0 pump protection, 1 no pump protection
 uint8_t modeHeat=0;
 
-uint8_t count=0;
+uint8_t count=100;
 
 //number of used tens (from 0 to 8)
 //0-3 bit define program
@@ -320,6 +320,9 @@ void loop() {
     //print druck onse in 30 sec.
     if(count==100){
       druck=druck/10;
+      if(druck<0){
+        druck=0;
+      }
       //Serial.println("Average value druck is ");
       serNum =51;
       Serial.println("serNum"+String(serNum));
