@@ -284,7 +284,7 @@ void loop() {
     }
     //protection pump check
     //turn off all tens in emergency mode if pump of.
-    if((digitalRead(pumpCheck)==HIGH) && (!((modeHeat & 0b10000000)>>7))){
+    if((digitalRead(pumpCheck)!=HIGH) && (!((modeHeat & 0b10000000)>>7))){
       //Serial.println("There is no signal from the pump!");
       serNum =55;
       Serial.println("serNum"+String(serNum));
@@ -302,7 +302,7 @@ void loop() {
         lcd.clear();
         delay(200);
         lcd.setCursor(2, 0);
-        lcd.print("OTCУTCTBУET СИГНАЛ");
+        lcd.print("OTCYTCTBYET СИГНАЛ");
         lcd.setCursor(5, 1);
         lcd.print("OT HACOCA!");
         lcd.setCursor(1, 2);
@@ -316,6 +316,7 @@ void loop() {
         }
       }
       modeHeat=modeHeat | 0b10010000; //turn of pump protection and on flag buttonOk
+      count=100;
     }
     //print druck onse in 30 sec.
     if(count==100){
@@ -374,6 +375,10 @@ void loop() {
     }
     //request temperature once in 3 secunde
     if(count%10==0){
+      //Serial.println("Count is ");
+      serNum =61;
+      Serial.println("serNum"+String(serNum));
+      Serial.println(count);
       //Serial.println("Memore free is ");
       //serNum =30;
       //Serial.println("serNum"+String(serNum));
