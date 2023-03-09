@@ -630,8 +630,8 @@ void loop() {
     }
     else{
       delay(200); //?
-      count=count+1;
     }
+    count=count+1;
   }
 
   //change heating temperature, turn 
