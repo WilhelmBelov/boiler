@@ -309,7 +309,7 @@ void loop() {
         lcd.setCursor(5, 1);
         lcd.print("OT HACOCA!");
         lcd.setCursor(1, 2);
-        lcd.print("ОТКЛЮЧИТЬ ЗАЩИТУ?");
+        lcd.print("ПРОДОЛЖИТЬ?");
         lcd.setCursor(7, 3);
         lcd.print("<  OK  >");
         delay(4750);
