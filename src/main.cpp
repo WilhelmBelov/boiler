@@ -21,9 +21,9 @@
 #define Pump 13
 
 // use analog pins als digital A1-A3
-#define buttonLeft 15
+#define buttonRight 15
 #define buttonOk 16
-#define buttonRight 17
+#define buttonLeft 17
 
 //check power, protection if power less as 4,5 V
 int powCheck = A0;
