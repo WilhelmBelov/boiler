@@ -94,7 +94,7 @@ while True:
             elif Data==46 or Data==45 or Data==49 or Data==48:
                 data = " <<{0}>>".format(mes[Data])
             #arduino message with value
-            elif Data==14 or Data==21 or Data==38 or Data==31 or Data==57 or Data==54  or Data==61:
+            elif Data==14 or Data==21 or Data==38 or Data==31 or Data==57 or Data==54  or Data==62:
                 value = q.get()
                 mesData = "{0} {1} {2}\n".format(datetime.datetime.now(), mes[Data], value)
             #arduino message
