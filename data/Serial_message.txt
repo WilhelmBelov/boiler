@@ -12,14 +12,14 @@ LCD print temperature, druck value on standat view
 LCD print user settings
 LCD print simbol / see how it
 Scrol pointers buttons action time is 200 ms.
-Settings selected. Scroll pointers position is 
+Settings selected. Scroll pointers position is
 LCD print select tens settings
 LCD print simbol plus on active tens
 LCD print 2 site first row for eighth ten
 Scrol pointers buttons action time is 100 ms.
 Scroll_pointer value:  
-Scroll_pointer value: 
-Selected power is  
+Scroll_pointer value:
+Selected power is
 LCD print confirmation on/of selected ten
 LCD print intervals notification on/of selected ten
 Control of tens is not automatic in moment.
