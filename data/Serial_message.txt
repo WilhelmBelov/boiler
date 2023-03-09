@@ -49,7 +49,7 @@ DeltaWait
 Turn of one ten.
 The current temperature has dropped.
 DeltaHeat 
-Druck(average)  
+Druck(average)
 pin is 
 value is 
 Unstable power! is (Volt) 
