@@ -124,6 +124,13 @@ void setup() {
   //Serial.println("Start! Initialisation sensor DS18B20 and LCD 2004 display."); 
   Serial.println("serNum"+String(serNum));
   ds.begin();
+  //ds test
+  ds.requestTemperatures();
+  current_temperature=ds.getTempCByIndex(0);
+  //Serial.println("Current_temperature is ");
+  //serNum =59;
+  //Serial.println("serNum"+String(serNum));
+  //Serial.println(String(current_temperature));
   lcd.init();//sda - A4 pin, scl - A5 pin
 
   // Pump turn on
