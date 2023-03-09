@@ -57,7 +57,7 @@ There is no signal from the pump!
 Critical pressure!
 Critical temperature!
 Druck(bar)
-Temperature(C) 
+Temperature(C)
 Power(kWatt)
 Count is 
 pumpCheck and  modeHeat are 
