@@ -55,7 +55,7 @@ double deltaWait; //variable to control the temperature change in the process of
 //7 bit - 0 pump protection, 1 no pump protection
 uint8_t modeHeat=0;
 
-uint8_t count=100;
+uint8_t count;
 
 //number of used tens (from 0 to 8)
 //0-3 bit define program
