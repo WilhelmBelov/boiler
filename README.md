@@ -11,4 +11,7 @@ Wir brauchen zu Project:
  5. Drei Knöpfen
  6. Relais für Pumpe
  7. Stromversorgung
+ 8. 5-Volt-Stromrichter
+ 9. Resistor 4,7 kOm
+ 10. Kabels
  
