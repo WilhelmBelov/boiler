@@ -41,7 +41,7 @@ Bauen Pin A0. Pin arbeitet als ein Voltmeter: wenn die Spannung weniger als 4,5 
 Bauen Pin A7. Pin arbeitet auch als ein Voltmeter: wenn die Spannung LOW ist (weniger als 2,5 V), dann alle Relais wird macht aus und die Benachrichtigung über Gefährlich geschrieben wird.Vileich braucht man AREF Pin benutzen, der auf dem Arduino ist der Pin, der den Referenzwert der Spannung für die analogen Eingänge darstellt.
 ![plot](./image/Pumpes%20Sicherung.png)
 
-##Algorithmus
+## Algorithmus
 Am Anfang der Monitor print Hello und print, das der Benutzer setzt die gehaltene Heiztemperatur. Wenn der Benutzer während 5 Minuten setzt die gehaltene Temperatur nicht, dann stellt mann die gehaltende Temperatur 40°C. Danach print der Monitor standarte Seite: actuell Druck (zeigt man einmal pro 30 Secunden), actuell Temperatur (zeigt man einmal pro 3 Secunden).
 Das Programm prüft 4 Parameters: 
   - Strom Pin A0. Wenn der nicht in Ordnung ist (weniger als 4,5 V), dann alle Relais wird macht aus und gedrückt die Benachrichtigung über Gefährlich. Wenn der Benutzer drückt lange (bis 5 Secund) die taste Ok, dann das Programm neu starten. 
