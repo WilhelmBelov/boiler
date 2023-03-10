@@ -15,3 +15,4 @@ Wir brauchen zu Project:
  9. Resistor 4,7 kOm
  10. Kabels
  
+![plot](./image/Arduino.png)
