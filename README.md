@@ -73,3 +73,9 @@ Für <Temperatur ändert> gibt der Wert von 20°c bis 80°C. Actuell gehaltene T
         3.3 Ein Heizelement wird hinzugefügt, und wenn der aktuelle Standby-Modus und seit dem letzten Mindestens 10 Sekunden verstrichen Ein/Aus. Zum Ausschalten wird das erste eingeschaltete Heizelement gesucht vom Ende der Liste.     
        
 Das Hinzufügen von (+0,5) in Absatz 2.1 und (-4,5) in Absatz 2.1 bedeutet, dass die Temperatur mit Unterstützung wird Variieren Sie von Heating_Temperature-4.5 bis Heating_Temperature+0.5 Grad, wobei Heating_temperature - eingestellte Heiztemperatur.
+
+## Daten speichern
+Mit dem Script auf Python (./data/capture.py) kann Man auch die Data speichern (actuell Temperatur, druck und s. w.). Die Data geht mit Serial Interface. Man muss nur der Script ausführen. Man kann es auch remote machen und auch die Arduino-Firmware actualisieren. Wir brauchen dazu:
+- Device mit Linux (Raspberri Pi)
+- USB Kabel für Aruino Nano
+- Internet Verbindung
