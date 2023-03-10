@@ -61,3 +61,4 @@ Temperature(C)
 Power(kWatt)
 Count is 
 pumpCheck and  modeHeat are 
+powCheck is 
