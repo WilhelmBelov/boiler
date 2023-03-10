@@ -117,6 +117,9 @@ void setup() {
   pinMode(buttonRight, INPUT_PULLUP);
   pinMode(buttonLeft, INPUT_PULLUP);
   //pinMode(pumpCheck, INPUT_PULLUP);
+  
+  //if AREF
+  //analogReference(EXTERNAL);
 
   //initialisation ports monitor, sensor ds18b20, display 
   Serial.begin(115200);
@@ -258,6 +261,10 @@ void loop() {
   //mainly cycle
   while (!((modeHeat & 0b10000)>>4)){//while buttonOk not pressed
     //protection power check
+    //Serial.println("powCheck is ");
+    serNum =63;
+    Serial.println("serNum"+String(serNum));
+    Serial.println(analogRead(powCheck));
     if(analogRead(powCheck)<920){
       //Serial.println("Unstable power! is (Volt) ");
       serNum =54;
@@ -293,7 +300,7 @@ void loop() {
     //Serial.println("pumpCheck and  modeHeat are ");
     //serNum =62;
     //Serial.println("serNum"+String(serNum));
-    //Serial.println(digitalRead(pumpCheck));
+    //Serial.println(analogRead(pumpCheck));
     if((analogRead(pumpCheck)<512) && (!((modeHeat & 0b10000000)>>7))){
       //Serial.println("There is no signal from the pump!");
       serNum =55;
