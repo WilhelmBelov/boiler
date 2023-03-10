@@ -51,6 +51,7 @@ Das Programm prüft 4 Parameters:
 Wenn Benutzer wohlt etwas ändert, muss man dann die Taste Ok drücken, danach wählt <Ten ändert> oder <Temperatur ändert>. 
 Für <Ten ändert> gibt der Wert von 0 kWatt bis 32 kWatt (einmal ändert pro 4 kWatt). Da macht der Benutzer nur maximale Wert für kWatt. Der Algorithmus enthält möglicherweise weniger Schatten als vom Benutzer festgelegt, aber nicht mehr. Actuell kWatt gedrückt auch hier. One Teng schaltet sich in einem Intervall von 10 Sekunden ein oder aus. Man kann Änderungen rückgängig machen.
 Für <Temperatur ändert> gibt der Wert von 20°c bis 80°C. Actuell gehaltene Temperatur gedrückt auch hier. Man kann Änderungen rückgängig machen. Das Programm haltet diese Temperatur mit dem Algorithmus, der unter ist:
+
         1. Das Programm arbeitet in zwei Modi:
               - Heizmodus (Modus Heizung) - wenn die aktuelle Temperatur unter der eingestellten Heiztemperatur liegt, Das heißt, das System sollte beheizt werden.
               - Wartemodus - wenn die aktuelle Temperatur höher als die eingestellte Heiztemperatur ist, Das heißt, das System abkühlen lassen.
