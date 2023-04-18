@@ -32,56 +32,59 @@ int DruckPin = A6;
 //check pump, HIGH if pump open (pin A7)
 int pumpCheck = A7;
  
+namespace Boiler_Parametrs{
+  //The heating temperature is set by the user or automatically. 
+  //The purpose of the program is to heat the boiler to the set temperature
+  //and maintain it unchanged.
+  double heating_temperature=40;
+  double druck=1;
+  double current_temperature;
+  double preview_temperature;
+  double deltaHeat; //variable to control the temperature change in the process of turning off the heaters
+  double deltaWait; //variable to control the temperature change in the process of turning on the heaters
 
-//The heating temperature is set by the user or automatically. 
-//The purpose of the program is to heat the boiler to the set temperature
-//and maintain it unchanged.
-double heating_temperature=40;
-double druck=1;
-double current_temperature;
-double preview_temperature;
-double deltaHeat; //variable to control the temperature change in the process of turning off the heaters
-double deltaWait; //variable to control the temperature change in the process of turning on the heaters
-
-//0 bit - 0 heat mode, 1 wait mode
-//1 bit - flag 0 - all of, flag 1 - all on
-//2 bit - 0 user mode in control of ten, 1 automatic
-//3 bit - 0 - temperature reaching mode, 1 - keep warm mode
-//4 bit use for crooked nail in yield for pooling buttonOk:
+  //0 bit - 0 heat mode, 1 wait mode
+  //1 bit - flag 0 - all of, flag 1 - all on
+  //2 bit - 0 user mode in control of ten, 1 automatic
+  //3 bit - 0 - temperature reaching mode, 1 - keep warm mode
+  //4 bit use for crooked nail in yield for pooling buttonOk:
     //- 0 - buttonOk not pressed, 1 - pressed.
-//5 bit - 0 druck protection, 1 no druck protection
-//6 bit - 0 temperature protection, 1 no temperature protection
-//7 bit - 0 pump protection, 1 no pump protection
-uint8_t modeHeat=0;
+  //5 bit - 0 druck protection, 1 no druck protection
+  //6 bit - 0 temperature protection, 1 no temperature protection
+  //7 bit - 0 pump protection, 1 no pump protection
+  uint8_t modeHeat=0;
 
-uint8_t count;
+  uint8_t count;
 
-//number of used tens (from 0 to 8)
-//0-3 bit define program
-//4-7 bit define user  - has first prioritat
-uint8_t usedTlegal=0b10001000;
-uint8_t usedT;
+  //number of used tens (from 0 to 8)
+  //0-3 bit define program
+  //4-7 bit define user  - has first prioritat
+  uint8_t usedTlegal=0b10001000;
+  uint8_t usedT;
 
-//synchronisation tens control in time, 
-//not allowed turn of tens less than an interval 15 sec.
-unsigned long previewMillis=millis();
-unsigned long tm=millis();
+  //synchronisation tens control in time, 
+  //not allowed turn of tens less than an interval 15 sec.
+  unsigned long previewMillis=millis();
+  unsigned long tm=millis();
 
-//for debug in control memory
-// Переменные, создаваемые процессом сборки,
-// когда компилируется скетч (need for memory control)
-//extern int __bss_end;
-//extern void *__brkval;
+  //for debug in control memory
+  // Переменные, создаваемые процессом сборки,
+  // когда компилируется скетч (need for memory control)
+  //extern int __bss_end;
+  //extern void *__brkval;
 
-//for information from Serial
-uint8_t serNum = 0; 
+  //for information from Serial
+  uint8_t serNum = 0; 
+};
 
-//self simbols
-byte left[8] = { 0b00011, 0b00111, 0b01111, 0b11111, 0b11111, 0b01111, 0b00111, 0b00011 };  //  arrow left
-byte right[8] = { 0b11000, 0b11100, 0b11110, 0b11111, 0b11111, 0b11110, 0b11100, 0b11000 };  //  arrow right
-byte gradus[8] = { 0b01100, 0b10010, 0b10010, 0b01100, 0b00000, 0b00000, 0b00000, 0b00000 };  //  gradus
-byte topLeft[8] = { 0b00001, 0b00001, 0b00011, 0b00011, 0b00111, 0b00111, 0b01111, 0b11111 };  //  arrow top left
-byte topRight[8] = { 0b10000, 0b10000, 0b11000, 0b11000, 0b11100, 0b11100, 0b11110, 0b11111 };  //  arrow top right
+struct Extra_Simbols{
+  //self simbols
+  byte left[8] = { 0b00011, 0b00111, 0b01111, 0b11111, 0b11111, 0b01111, 0b00111, 0b00011 };  //  arrow left
+  byte right[8] = { 0b11000, 0b11100, 0b11110, 0b11111, 0b11111, 0b11110, 0b11100, 0b11000 };  //  arrow right
+  byte gradus[8] = { 0b01100, 0b10010, 0b10010, 0b01100, 0b00000, 0b00000, 0b00000, 0b00000 };  //  gradus
+  byte topLeft[8] = { 0b00001, 0b00001, 0b00011, 0b00011, 0b00111, 0b00111, 0b01111, 0b11111 };  //  arrow top left
+  byte topRight[8] = { 0b10000, 0b10000, 0b11000, 0b11000, 0b11100, 0b11100, 0b11110, 0b11111 };  //  arrow top right
+};
 
 // Obj temperature
 OneWire oneWire(TemperatPin);  //port sensors setting
@@ -90,6 +93,7 @@ DallasTemperature ds(&oneWire);
 // Obj display
 LCD_1602_RUS lcd(0x27,20,4);
 
+using namespace Boiler_Parametrs;
 //definition functions
 void lcdError_test();
 void sel_h_tem();
