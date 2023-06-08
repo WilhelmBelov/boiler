@@ -17,6 +17,8 @@ Wir sammeln für das Project:
  10. LCD Display 2004, Modul i2C Interface
 ![plot](./image/Schema.png)
 
+
+
 ## Projekt bauen
 Empfehlung für Arduinos Stromversorgung ist 12 V. Mit weniger (5V) kann Man Displays Problem haben.
 ![plot](./image/Arduino.png)
