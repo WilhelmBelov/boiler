@@ -2,8 +2,8 @@
 Arduino Nano Program controls 8 relay, each of which is connected to a heater with a capacity of 4 kW each for heating the boiler to a given temperature. Also, a temperature and pressure sensor is connected for control.
 
 ## Schema
-[1]: https://drive.google.com/file/d/154PI7jMnJLIqornK40154FW61Ayioao7/view?usp=sharing "Schema"
-Folgen einem [1]. Auch das Schema ist unter. 
+[Schema]: https://drive.google.com/file/d/154PI7jMnJLIqornK40154FW61Ayioao7/view?usp=sharing "Schema Boiler Control -Drawio"
+Folgen einem [Schema]. Auch das Schema ist unter. 
 Wir sammeln für das Project:
  1. Arduino Nano mikrocontroller
  2. Acht Relais
