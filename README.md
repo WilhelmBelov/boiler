@@ -1,9 +1,10 @@
 # boiler
 Arduino Nano Program controls 8 relay, each of which is connected to a heater with a capacity of 4 kW each for heating the boiler to a given temperature. Also, a temperature and pressure sensor is connected for control.
 
-## Projekt bauen
-Folgen einem Schema, das unter ist. 
-Wir brauchen zu Project:
+## Schema
+[1]: https://drive.google.com/file/d/154PI7jMnJLIqornK40154FW61Ayioao7/view?usp=sharing "Schema"
+Folgen einem [1]. Auch das Schema ist unter. 
+Wir sammeln für das Project:
  1. Arduino Nano mikrocontroller
  2. Acht Relais
  3. Temperature Sensor
@@ -12,9 +13,11 @@ Wir brauchen zu Project:
  6. Relais für Pumpe
  7. Stromversorgung
  8. 5-Volt-Stromrichter
- 9. Resistor 4,7 kOm
- 10. Kabels
- 
+ 9. Resistor 4,7 kOm, Kabels
+ 10. LCD Display 2004, Modul i2C Interface
+![plot](./image/Schema.png)
+
+## Projekt bauen
 Empfehlung für Arduinos Stromversorgung ist 12 V. Mit weniger (5V) kann Man Displays Problem haben.
 ![plot](./image/Arduino.png)
 
@@ -35,11 +38,14 @@ Kauf Interet Platform: https://www.ebay.de/itm/115542104461
 Bauen Knöpfen. Es gibt links, rechts und OK Knöpfen. Reaktionszeit: 900ms. Reaktionszeit: 200ms, wenn man scrollen muss.
 ![plot](./image/Knöpfen.png)
 
-Bauen Pin A0. Pin arbeitet als ein Voltmeter: wenn die Spannung weniger als 4,5 V relativ Arduinos GND ist, dann alle Relais wird macht aus und die Benachrichtigung über Gefährlich geschrieben wird. Aber es arbeitet nicht, wenn Pin A0 so einfach zu VCC des 5-Volt-Stromrichters verbinden.
+Bauen Pin A0. Pin funktioniert als ein Voltmeter: wenn die Spannung weniger als 4,5 V relativ Arduinos GND ist, dann alle Relais wird macht aus und die Benachrichtigung über Gefährlich geschrieben wird. Aber es arbeitet nicht, wenn Pin A0 so einfach zu VCC des 5-Volt-Stromrichters verbinden.
 ![plot](./image/Strom%20Sicherung.png)
 
-Bauen Pin A7. Pin arbeitet auch als ein Voltmeter: wenn die Spannung LOW ist (weniger als 2,5 V), dann alle Relais wird macht aus und die Benachrichtigung über Gefährlich geschrieben wird.Vileich braucht man AREF Pin benutzen, der auf dem Arduino ist der Pin, der den Referenzwert der Spannung für die analogen Eingänge darstellt.
+Bauen Pin A7. Pin funktioniert auch als ein Voltmeter: wenn die Spannung LOW ist (weniger als 2,5 V), dann alle Relais wird macht aus und die Benachrichtigung über Gefährlich geschrieben wird.Vileich braucht man AREF Pin benutzen, der auf dem Arduino ist der Pin, der den Referenzwert der Spannung für die analogen Eingänge darstellt.
 ![plot](./image/Pumpes%20Sicherung.png)
+
+LCD Display 2004. Man nutzt Pin A4 (SDA) und Pin A5 (SCL). Mit Modul i2C Interface ist es möglich, die Information über Temperature und Druck auch über Users Actions von Arduino Nano auf dem Bildschirm zu übertragen.
+![plot](./image/Display.png)
 
 ## Algorithmus
 Am Anfang der Monitor print Hello und print, das der Benutzer setzt die gehaltene Heiztemperatur. Wenn der Benutzer während 5 Minuten setzt die gehaltene Temperatur nicht, dann stellt mann die gehaltende Temperatur 40°C. Danach print der Monitor standarte Seite: actuell Druck (zeigt man einmal pro 30 Secunden), actuell Temperatur (zeigt man einmal pro 3 Secunden).
@@ -76,7 +82,8 @@ Für <Temperatur ändert> gibt der Wert von 20°c bis 80°C. Actuell gehaltene T
 Das Hinzufügen von (+0,5) in Absatz 2.1 und (-4,5) in Absatz 2.1 bedeutet, dass die Temperatur mit Unterstützung wird Variieren Sie von Heating_Temperature-4.5 bis Heating_Temperature+0.5 Grad, wobei Heating_temperature - eingestellte Heiztemperatur.
 
 ## Daten speichern
-Mit dem Script auf Python (./data/capture.py) kann Man auch die Data speichern (actuell Temperatur, druck und s. w.). Die Data geht mit Serial Interface. Man muss nur der Script ausführen. Man kann es auch remote machen und auch die Arduino-Firmware actualisieren. Wir brauchen dazu:
+Mit dem Script auf Python (./data/capture.py) kann Man auch die Data speichern (actuell Temperatur, druck und s. w.). Die Data geht um Serial Interface. Man muss nur der Script ausführen. Man kann es auch remote machen und auch die Arduino-Firmware actualisieren. Wir brauchen dazu:
 - Device mit Linux (Raspberri Pi)
 - USB Kabel für Aruino Nano
 - Internet Verbindung
+Die Data wird in Message_report.txt File gespeichert. 
